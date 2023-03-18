@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="{% static '/assets/images/logo.ico' %}" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+          <ul class="blog-posts-list">
+          {% for course in courses %}
+              <li class="blog-post-item">
+                  <a href="{% url 'course_details' course.category.slug course.id %}">
+
+                    <figure class="blog-banner-box">
+                      <img src="{{ course.image.url }}" alt="Best fonts every designer" loading="lazy">
+                    </figure>
+
+                    <div class="blog-content">
+
+                      <div class="blog-meta">
+                        <p class="blog-category">{{ course.category }}</p>
+
+                        <span class="dot"></span>
+
+                        <time datetime="2022-02-23">{{ course.date }}</time>
+                      </div>
+
+                      <h3 class="h3 blog-item-title">{{ course.topic}}</h3>
+
+                      <p class="blog-text">
+                       {{ course.text_area  }}
+                      </p>
+
+                    </div>
+
+                  </a>
+            </li>
+          {% endfor %}
+
+
+  </ul>
+
+
+</body>
+</html>
