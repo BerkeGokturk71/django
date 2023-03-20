@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import Post
+from denek.models import Denek
 def index(request):
     courses = Post.objects.order_by("-date")
+    deneks = Denek.objects.filter(is_valid=True).order_by("-date")
     context = {
-        "courses":courses
+        "courses":courses,
+        "deneks":deneks,
     }
     return render(request, "index.html",context)
 
@@ -25,3 +28,4 @@ def comment(request):
     if request.method == "POST":
         name = request.POST["fullname"]
         message = request.POST["message"]
+
